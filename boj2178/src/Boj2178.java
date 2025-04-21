@@ -36,6 +36,7 @@ public class Boj2178 {
         ch[0][0]=1;
         Bfs();
 
+        System.out.println(ch[n-1][m-1]);
 
     }
 
@@ -50,7 +51,13 @@ public class Boj2178 {
                 int ny = y + dy[i];
                 int nx = x + dx[i];
 
-
+                if (ny >= 0 && ny < n && nx >= 0 && nx < m && board[ny][nx] == 1 && ch[ny][nx]==0) {
+                    if(ch[y][x]+1 > ch[ny][nx]) {
+                        // 현재길 +1 보다 다음길의 값이 작아야 작은값으로 이동한 후 현재값+1값을 넣을 수 있음
+                        ch[ny][nx] = ch[y][x] + 1;
+                        q.add(new Point(ny, nx));
+                    }
+                }
 
 
             }
